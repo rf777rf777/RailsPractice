@@ -6,6 +6,9 @@ gem 'rails', '4.2.6'
 # 加入bootstrap美化UI
 gem 'bootstrap-sass'
 
+#加入一個分頁套件
+gem "kaminari"
+
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 # Use SCSS for stylesheets

@@ -3,7 +3,11 @@ class EventsController < ApplicationController
 	before_action :set_event, only:[:show,:edit,:update,:destroy] 
 
 	def index
-		@events = Event.all
+		#一次抓出所有活動太耗效能
+		#@events = Event.all
+
+		#使用kaminari套件後改成
+		@events = Event.page(params[:page]).per(5)
 	end
 
 	def new
