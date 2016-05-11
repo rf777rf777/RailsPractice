@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
   
+  #使用Restful
+  resources :events 
+
   resources :people #此為建立應架(scaffold)時自動產生
 
   #瀏覽器 GET "/welcome/say_hello" 就會送到welcome controller的say action
@@ -11,7 +14,9 @@ Rails.application.routes.draw do
   get "/welcome" => "welcome#index"
   
   #使用外卡路由
-  match ':controller(/:action(/:id(.:format)))', :via => :all
+  #match ':controller(/:action(/:id(.:format)))', :via => :all
+
+
 
 
   # The priority is based upon order of creation: first created -> highest priority.

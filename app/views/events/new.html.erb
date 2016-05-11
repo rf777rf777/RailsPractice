@@ -1,4 +1,7 @@
-<%= form_for @event, url: {controller: "events",action: "create" } do |f| %>
+<!--Restful-->
+
+<%= form_for @event, url: events_path do |f|  %>
+<!--本例中可以完全省略:url參數 Rails可以根據@event推算出路由-->
 	<%= render partial: "form", locals: {:f => f} %>
 	<%= f.submit "Create" %>
 <% end %>

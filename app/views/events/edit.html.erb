@@ -1,6 +1,8 @@
-<%= form_for @event, url: {controller: "events" , action: "update" , id: @event} do |f| %>
+<!--Restful--> 
 
-<%= render partial: "form" , locals: {f: f} %>
+<%= form_for @event, url: event_path(@event) , method: :patch do |f| %>
+<!-- :url和:method可以省略 Rails自動會根據@event是新建的還是修改來決定要不要使用patch -->
+<%= render partial: "form" , locals: {:f => f} %>
 <%= f.submit "Update" %>
 
 <% end %>
