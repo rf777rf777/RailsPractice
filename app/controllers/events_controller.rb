@@ -8,6 +8,15 @@ class EventsController < ApplicationController
 
 		#使用kaminari套件後改成
 		@events = Event.page(params[:page]).per(5)
+
+
+		#使用respond_to支援不同的資料格式(XML JSON Atom)
+		respond_to do |format|
+			format.html # index.html.erb
+			format.xml { render xml: @events.to_xml }
+			format.json { render json: @events.to_json }
+			format.atom {@feed_title = "my event list" } #index.atom.builder
+		end
 	end
 
 	def new
@@ -33,8 +42,15 @@ class EventsController < ApplicationController
 		#透過before_action 
 		#可以將Controller中重複的程式獨立出來
 		#以下此行可註解掉
-		#@event = Event.find(params[:id])  
-		@page_title = @event.name
+		#@event = Event.find(params[:id]) 
+
+		#改放在respond_to裡面
+		#@page_title = @event.name
+		respond_to do |format|
+			format.html {@page_title = @event.name } #show.html.erb
+			format.xml #show.xml.builder
+			format.json { render json: {id: @event.id ,name: @event.name }.to_json}
+		end
 	end
 
 	def edit

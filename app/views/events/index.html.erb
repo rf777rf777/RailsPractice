@@ -23,6 +23,12 @@
 
 		<!--使用Restful-->
 		<%= link_to "show" , event_path(event) %>
+
+		<!--加入其他格式的超連結-->
+    	<%= link_to " (XML)", event_path(event, format: :xml) %>
+    	<%= link_to " (JSON)", event_path(event, :format => :json) %>
+
+
 		<%= link_to "edit" , edit_event_path(event) %>
 		<%= button_to "delete" , event_path(event) , method: :delete , data: {confirm: "Are you sure?" }%>
 
@@ -35,3 +41,6 @@
 
 <!--使用Restful-->
 <%= link_to "New Event" , new_event_path %>
+<br>
+<!--加入其他格式的超連結-->
+<%= link_to "Atom feed", events_path(:format => :atom) %>
