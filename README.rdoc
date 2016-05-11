@@ -1,6 +1,6 @@
 == Rails練習
 
-只是個CRUD練習
+練習基本CRUD、改寫Restful、ActiveRecord與關聯設計 練習紀錄
 
 
 * Ruby version
