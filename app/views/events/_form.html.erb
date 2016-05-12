@@ -4,6 +4,12 @@
 <%= f.label :description, "Description" %>
 <%= f.text_area :description %>
 
+<!--讓 event 可以用 select 單選一個 category 兩種寫法選一-->
+<%= f.collection_select(:category_id,Category.all,:id,:name) %>
+<!--
+<%= f.select :category_id,Category.all.map { |c|[c.name,c.id]  } %>
+-->
+
 <% if @event.errors.any? %>
 	<ul>
 		<% @event.errors.full_messages.each do |msg| %>

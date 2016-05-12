@@ -1,0 +1,6 @@
+<!--Restful綜合應用實作-->
+
+<%= form_for @attendee,url: event_attendee_path(@event ,@attendee),html: {method: :patch} do |f| %>
+	<%= f.text_field :name %>
+	<%= f.submit %>
+<% end %>

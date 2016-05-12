@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
   
   #使用Restful
-  resources :events 
+  resources :events do
+    
+  #Restful 綜合應用實作
+    resources :attendees , controller: "event_attendees"
+  end
 
   resources :people #此為建立應架(scaffold)時自動產生
 

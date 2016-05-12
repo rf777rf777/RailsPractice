@@ -32,6 +32,9 @@
 		<%= link_to "edit" , edit_event_path(event) %>
 		<%= button_to "delete" , event_path(event) , method: :delete , data: {confirm: "Are you sure?" }%>
 
+		<!--Restful綜合應用實作-->
+		<%= link_to "attendees", event_attendees_path(event) %>
+
 	</li>
 	<% end %>
 </ul>
