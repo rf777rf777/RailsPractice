@@ -4,7 +4,15 @@ Rails.application.routes.draw do
   resources :events do
     
   #Restful 綜合應用實作
+    #一對多
     resources :attendees , controller: "event_attendees"
+    
+    #一對一(所以使用單數resource)
+    #Controller檔名還是複數( "event_locations" )
+    #使用RESTful路由的Controller 無論在config/routes.rb中使用單數resource或複數resources形式
+    #檔名一律都是複數
+    resource :location, controller: "event_locations"
+
   end
 
   resources :people #此為建立應架(scaffold)時自動產生

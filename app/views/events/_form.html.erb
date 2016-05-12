@@ -4,11 +4,23 @@
 <%= f.label :description, "Description" %>
 <%= f.text_area :description %>
 
-<!--讓 event 可以用 select 單選一個 category 兩種寫法選一-->
+<!--讓 event 可以用 select 單選一個 category 兩種寫法選一 效果一樣-->
 <%= f.collection_select(:category_id,Category.all,:id,:name) %>
 <!--
 <%= f.select :category_id,Category.all.map { |c|[c.name,c.id]  } %>
 -->
+
+<%= f.fields_for :location do |location_form| %>
+	<p>
+		<%= location_form.label :name,"Location Name" %>
+		<%= location_form.text_field :name %>
+
+			<% unless location_form.object.new_record? %>
+				<%= location_form.label :_destroy,"Remove；" %>
+				<%= location_form.check_box :_destroy %>
+			<% end %>
+	</p>
+<% end %>
 
 <% if @event.errors.any? %>
 	<ul>

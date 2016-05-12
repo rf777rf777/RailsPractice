@@ -16,5 +16,10 @@ class Event < ActiveRecord::Base
 	#防止nil.name錯誤
 	delegate :name,to: :category,prefix: true,allow_nil: true
 	
+	#accepts_nested_attributes_for這個方法可以讓更新event資料時 也可以直接更新location的關聯資料	
+	#也就是說 可以完全不需要修改events_controller的新增和編輯Action
+	#可以透過本來的params[:event]參數來新增或修改location
+	accepts_nested_attributes_for :location,allow_destroy: true , reject_if: :all_blank
+
 	validates_presence_of :name #宣告name屬性為必填(不可空白)
 end
