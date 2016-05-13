@@ -29,6 +29,19 @@ Rails.application.routes.draw do
       post :bulk_update
     end
 
+    #新增event dashboard 頁面
+    #member 表示這一個路由是針對特定一個 event 來操作
+    #必須傳入某一個 event
+    member do
+      get :dashboard
+    end
+
+    #自訂member路由
+    member do
+      post :join
+      post :withdraw
+    end
+
   end
 
   resources :people #此為建立應架(scaffold)時自動產生
