@@ -1,3 +1,10 @@
+<!--讓event index可以進行關鍵字搜尋-->
+<%= form_tag events_path, method: :get do %>
+	<%= text_field_tag "keyword" %>
+	<%= submit_tag "Search" %>
+<% end %>
+
+
 <!-- 使用kaminari分頁套件後加入: -->
 <%= paginate @events %>
 
@@ -54,6 +61,8 @@
 
 <%= button_to "Delete All" , bulk_delete_events_path , method: :post %>
 
+<%= link_to "sort by Name" , events_path(order: "name")%>
+<%= link_to "sort by Default" ,events_path %>
 
 <!--若要將此核取方塊與這條線之上程式合併 須刪除上面的delete 不然這裡的Delete功能會重複無法執行-->
 <%= form_tag bulk_update_events_path do %>

@@ -7,9 +7,9 @@ class EventsController < ApplicationController
 		#@events = Event.all
 
 		#使用kaminari套件後改成
-		@events = Event.page(params[:page]).per(5)
+		#@events = Event.page(params[:page]).per(5)
 
-
+=begin
 		#使用respond_to支援不同的資料格式(XML JSON Atom)
 		respond_to do |format|
 			format.html # index.html.erb
@@ -17,6 +17,31 @@ class EventsController < ApplicationController
 			format.json { render json: @events.to_json }
 			format.atom {@feed_title = "my event list" } #index.atom.builder
 		end
+=end
+		#關鍵字搜尋功能
+		if params[:keyword]
+			@events = Event.where( ["name like ?","%#{params[:keyword]}%" ] )
+		else
+			@events = Event.all
+		end
+
+		#使用kaminari套件做分頁拉到後面
+		#先檢查是否有params[:keyword]參數來進行過濾 
+		#最後統一進行分頁。
+		#@events = @events.page(params[:page]).per(5)
+
+		#讓event index可以照參數排序 (排序的參數在index.html.erb)
+		sort_by = (params[:order] == "name") ? "name" : "created_at"
+		@events = Event.order(sort_by).page(params[:page]).per(5)
+		
+		#支援不同資料格式一樣拉到後面 不然會產生錯誤
+		respond_to do |format|
+			format.html # index.html.erb
+			format.xml { render xml: @events.to_xml }
+			format.json { render json: @events.to_json }
+			format.atom {@feed_title = "my event list" } #index.atom.builder
+		end
+
 	end
 
 	def new
