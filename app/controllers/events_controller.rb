@@ -82,6 +82,30 @@ class EventsController < ApplicationController
 
 	end
 
+	def latest
+		@events = Event.order("id DESC").limit(3)
+	end
+
+	#刪除多筆的方法
+	def bulk_delete
+		Event.destroy_all
+		redirect_to events_path
+	end
+
+	def bulk_update
+		ids = Array(params[:ids])
+		events = ids.map{ |i| Event.find_by_id(i) }.compact
+
+		if params[:commit] == "Publish"
+			events.each{ |e| e.update( status: "published" )}
+
+		elsif params[:commit] == "Delete"
+			events.each{ |e| e.destroy }
+		end
+
+		redirect_to events_url
+	end
+
 	private
 
 	def event_params

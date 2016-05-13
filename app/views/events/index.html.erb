@@ -49,3 +49,20 @@
 <br>
 <!--加入其他格式的超連結-->
 <%= link_to "Atom feed", events_path(:format => :atom) %>
+
+<%= button_to "Delete All" , bulk_delete_events_path , method: :post %>
+
+
+<!--若要將此核取方塊與這條線之上程式合併 須刪除上面的delete 不然這裡的Delete功能會重複無法執行-->
+<%= form_tag bulk_update_events_path do %>
+<ul>
+	<% @events.each do |e| %>
+	<li>
+		<%= check_box_tag "ids[]" ,e.id, false %>
+		<%= e.name %>
+	</li>
+	<% end %>
+</ul>
+<%= submit_tag "Delete" %>
+<%= submit_tag "Publish" %>
+<% end %>

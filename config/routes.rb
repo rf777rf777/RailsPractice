@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
   
-  #使用Restful
-  resources :events do
+    #使用Restful
+    resources :events do
     
-  #Restful 綜合應用實作
+    #Restful 綜合應用實作
     #一對多
     resources :attendees , controller: "event_attendees"
     
@@ -12,6 +12,22 @@ Rails.application.routes.draw do
     #使用RESTful路由的Controller 無論在config/routes.rb中使用單數resource或複數resources形式
     #檔名一律都是複數
     resource :location, controller: "event_locations"
+
+    #新增不同的頁面
+    #collection 表示這一個路由是針對 events 集合來操作
+    collection do
+        get :latest
+    end
+
+    #一次刪除多筆資料 
+    #RESTful中的destroy action是用來刪除一筆資料的
+    collection do
+      post :bulk_delete
+    end
+
+    collection do
+      post :bulk_update
+    end
 
   end
 
