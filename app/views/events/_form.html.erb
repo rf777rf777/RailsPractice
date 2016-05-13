@@ -10,6 +10,11 @@
 <%= f.select :category_id,Category.all.map { |c|[c.name,c.id]  } %>
 -->
 
+<!--在 event new/edit 中 可以使用 checkbox 多選 group 兩種寫法選一種 效果一樣(書)-->
+<%= f.collection_check_boxes(:group_ids,Group.all ,:id,:name) %>
+
+
+
 <%= f.fields_for :location do |location_form| %>
 	<p>
 		<%= location_form.label :name,"Location Name" %>

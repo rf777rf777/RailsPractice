@@ -11,3 +11,12 @@
 <!--防止nil.name錯誤選單簡單方式 或 在Event model加入更改-->
 <!--一般顯示方式用 @event.category.name -->
 <p>Categroy:<%= @event.category.try(:name) %></p>
+
+
+<!--顯示Group名稱-->
+<p>
+Group:
+	<% @event.groups.each do |g| %>
+		<%= g.name %>
+	<% end %>
+</p>
