@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  
+
     #使用Restful
     resources :events do
     
@@ -57,8 +57,10 @@ Rails.application.routes.draw do
   #使用外卡路由
   #match ':controller(/:action(/:id(.:format)))', :via => :all
 
-
-
+  #後台的路由
+  namespace :admin do
+    resources :events
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -115,3 +117,4 @@ Rails.application.routes.draw do
   #     resources :products
   #   end
 end
+
